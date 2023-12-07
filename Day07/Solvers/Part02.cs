@@ -32,7 +32,11 @@ public sealed class Part02 : Solver
             var cards = splitHand[0];
             var bid = int.Parse(splitHand[1]);
 
-            return new HandPart02(cards, bid);
+            return new HandPart02
+            {
+                Cards = cards,
+                Bid = bid
+            };
         }).ToList();
 
         var customComparer = new HandComparerPart02();

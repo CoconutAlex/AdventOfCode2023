@@ -6,12 +6,6 @@ public abstract class Hand
     public int Bid { get; set; }
     public int HandStrength { get; set; }
 
-    protected Hand(string cards, int bid)
-    {
-        Cards = cards;
-        Bid = bid;
-    }
-
     public abstract int GetHandStrength();
 
     protected abstract List<int> GetOrderedCardValues();

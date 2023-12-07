@@ -2,10 +2,6 @@ namespace Day07.Solvers;
 
 public class HandPart01 : Hand
 {
-    public HandPart01(string cards, int bid) : base(cards, bid)
-    {
-    }
-
     public override int GetHandStrength()
     {
         int handStrength = true switch

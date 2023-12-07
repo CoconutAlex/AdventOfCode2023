@@ -2,10 +2,6 @@ namespace Day07.Solvers;
 
 public class HandPart02 : Hand
 {
-    public HandPart02(string cards, int bid) : base(cards, bid)
-    {
-    }
-
     public override int GetHandStrength()
     {
         int jokerCount = Cards.Count(c => c == 'J');
