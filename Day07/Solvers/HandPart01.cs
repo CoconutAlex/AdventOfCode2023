@@ -21,7 +21,6 @@ public class HandPart01 : Hand
 
     protected override List<int> GetOrderedCardValues()
     {
-        // Assign values to card labels based on their relative strength
         Dictionary<char, int> cardValues = new Dictionary<char, int>
         {
             { 'A', 14 },
@@ -39,7 +38,6 @@ public class HandPart01 : Hand
             { '2', 2 }
         };
 
-        // Order card values based on label
         var orderedValues = Cards.Select(card => cardValues[card]).OrderByDescending(value => value).ToList();
 
         return orderedValues;

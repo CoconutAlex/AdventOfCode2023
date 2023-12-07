@@ -14,14 +14,14 @@ namespace Day07
                 new Part01
                 {
                     Title = GetTitle(args),
-                    Day = 6,
+                    Day = 7,
                     Part = 1,
                     FileInputName = FileName
                 }.RunSolver();
 
                 new Part02
                 {
-                    Day = 6,
+                    Day = 7,
                     Part = 2,
                     FileInputName = FileName
                 }.RunSolver();

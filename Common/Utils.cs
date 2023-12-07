@@ -2,7 +2,7 @@
 {
     public static class Utils
     {
-        private const string InputFolderPath = "../Common/InputPuzzles/";
+        private const string InputFolderPath = @"C:\MyCode\AdventOfCode2023\Common\InputPuzzles/";
 
         public static void ExecuteSafely(Action action)
         {

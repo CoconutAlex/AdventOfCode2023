@@ -10,12 +10,7 @@ public class HandPart02 : Hand
         {
             _ when HasFiveOfAKind() => 7,
             _ when HasFourOfAKind() => (jokerCount > 0) ? 7 : 6,
-            _ when HasFullHouse() => jokerCount switch
-            {
-                2 => 7,
-                1 => 6,
-                _ => 5
-            },
+            _ when HasFullHouse() => (jokerCount == 2) ? 7 : (jokerCount == 1) ? 6 : 5,
             _ when HasThreeOfAKind() => (jokerCount == 2) ? 7 : (jokerCount == 1) ? 6 : 4,
             _ when HasTwoPair() => (jokerCount == 3) ? 7 : (jokerCount == 2) ? 6 : (jokerCount == 1) ? 5 : 3,
             _ when HasOnePair() => (jokerCount == 3) ? 7 : (jokerCount == 2) ? 6 : (jokerCount == 1) ? 4 : 2,
@@ -31,7 +26,6 @@ public class HandPart02 : Hand
 
     protected override List<int> GetOrderedCardValues()
     {
-        // Assign values to card labels based on their relative strength
         Dictionary<char, int> cardValues = new Dictionary<char, int>
         {
             { 'A', 13 },
@@ -49,7 +43,6 @@ public class HandPart02 : Hand
             { 'J', 1 },
         };
 
-        // Order card values based on label
         var orderedValues = Cards.Select(card => cardValues[card]).OrderByDescending(value => value).ToList();
 
         return orderedValues;
