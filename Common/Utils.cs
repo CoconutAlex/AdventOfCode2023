@@ -4,6 +4,8 @@
     {
         private const string InputFolderPath = @"C:\MyCode\AdventOfCode2023\Common\InputPuzzles/";
 
+        #region Base
+
         public static void ExecuteSafely(Action action)
         {
             try
@@ -17,6 +19,28 @@
             }
         }
 
+        public static void DisplayResults(Solver solution)
+        {
+            if (solution.Part == 1)
+                Console.WriteLine($"\n--- Day {solution.Day}: {solution.Title} ---\n");
+
+            Console.WriteLine($"Part {solution.Part}: {solution.Result}");
+        }
+
+        public static string GetTitle(string[] args)
+        {
+            return args.Length > 0 ? string.Join(" ", args) : "Empty Title..";
+        }
+
+        #endregion
+
+        #region InputFile
+
+        private static string GetInputFilePath(string fileName)
+        {
+            return $"{InputFolderPath}/{fileName}.txt";
+        }
+
         public static string[] GetInputLines(string fileName)
         {
             return File.ReadAllLines(GetInputFilePath(fileName));
@@ -27,22 +51,44 @@
             return input.Where(line => !string.IsNullOrWhiteSpace(line)).ToList();
         }
 
-        private static string GetInputFilePath(string fileName)
+        #endregion
+
+        #region LCM
+
+        public static long CalculateLcm(IReadOnlyList<long> numbers)
         {
-            return $"{InputFolderPath}/{fileName}.txt";
+            if (numbers.Count < 2)
+            {
+                throw new ArgumentException("At least two numbers are required to calculate LCM.");
+            }
+
+            long lcm = numbers[0];
+
+            for (int i = 1; i < numbers.Count; i++)
+            {
+                lcm = CalculateLcm(lcm, numbers[i]);
+            }
+
+            return lcm;
         }
 
-        public static string GetTitle(string[] args)
+        private static long CalculateLcm(long a, long b)
         {
-            return args.Length > 0 ? string.Join(" ", args) : "Empty Title..";
+            return Math.Abs(a * b) / CalculateGcd(a, b);
         }
 
-        public static void DisplayResults(Solver solution)
+        private static long CalculateGcd(long a, long b)
         {
-            if (solution.Part == 1)
-                Console.WriteLine($"\n--- Day {solution.Day}: {solution.Title} ---\n");
+            while (b != 0)
+            {
+                long temp = b;
+                b = a % b;
+                a = temp;
+            }
 
-            Console.WriteLine($"Part {solution.Part}: {solution.Result}");
+            return Math.Abs(a);
         }
+
+        #endregion
     }
 }
